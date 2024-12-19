@@ -19,7 +19,15 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Snake.cpp" />
+    <ClCompile Include="def.cpp" />
+    <ClCompile Include="draw.cpp" />
+    <ClCompile Include="gamelogic.cpp" />
+    <ClCompile Include="init.cpp" />
+    <ClCompile Include="keyboard.cpp" />
+    <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="def.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
