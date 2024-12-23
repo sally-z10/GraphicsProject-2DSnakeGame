@@ -133,8 +133,3 @@ void displayGame() {
     glutSwapBuffers();
 }
 
-
-void reshape(GLsizei, GLsizei)
-{
-    glutReshapeWindow(map_size * 20, map_size * 20);
-}

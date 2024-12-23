@@ -18,7 +18,7 @@ using namespace std;
 
 // colors for the program in rgb format
 #define mapBgColor   0.10, 0.10, 0.20
-#define snakeColor   0.00, 0.00, 0.00
+#define snakeColor   1.00, 1.00, 1.00
 #define foodColor    0.00, 0.00, 0.00
 #define wallColor    0.0,  1.0,  1.0
 #define splFoodColor 1.00, 0.00, 0.00
@@ -72,13 +72,12 @@ void reshape(GLsizei w, GLsizei h);
 void initializeGame();
 void keyboard(unsigned char key, int x, int y);
 void mouse(int button, int state, int mx, int my); // New mouse callback
-void displayHighScore(); // Stub for high score screen
 void displayMenu();
 void menuKeyboard(unsigned char key, int, int);
 void initMenuWindow();
 void initGameWindow();
 void saveHighScore();
 void TimerFunc(int value);
-
+void loadHighScore();
 
 #endif // DEF_H

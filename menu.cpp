@@ -21,6 +21,29 @@ void saveHighScore() {
     }
 }
 
+
+void showFinalScore()
+{
+    std::cout << "*********\n";
+    std::cout << "Your Final Score is: " << score << std::endl;
+}
+
+void guide()
+{
+    printf("\n*********************");
+    printf("\nUse WASD as movement keys.");
+    printf("\nPress W for Up, A for left, S for Down and D for Right");
+    printf("\nM to change difficulty.");
+    printf("\nR to Restart Game.");
+    printf("\n+ to Increase map size. The game will restart though.");
+    printf("\n- to Decrease map size. The game will restart though.");
+    printf("\nP to pause/resume the game.");
+    printf("\nPress Esc or Q to  Quit.");
+    printf("\nPress H for help.");
+    printf("\n\nPress P to Start.");
+    printf("\n*********************\n");
+}
+
 void displayMenu() {
     glClear(GL_COLOR_BUFFER_BIT);
 

@@ -50,6 +50,7 @@ void keyboard(unsigned char key, int, int) {
     case 'R':
     case 'r':
         showFinalScore();
+		saveHighScore();
         std::cout << "You restarted the Game.\nRestarting...\n.All the best!!!.\n";
         initializeGame();
         break;
@@ -59,6 +60,7 @@ void keyboard(unsigned char key, int, int) {
             map_size = map_size + 1;
         glViewport(0, 0, 20 * map_size, 20 * map_size);
         showFinalScore();
+		saveHighScore();
         initializeGame();
         break;
     case '_':
@@ -67,12 +69,14 @@ void keyboard(unsigned char key, int, int) {
             map_size = map_size - 1;
         glViewport(0, 0, 20 * map_size, 20 * map_size);
         showFinalScore();
+		saveHighScore();
         initializeGame();
         break;
     case 27:
     case 'q':
         std::cout << "You pressed exit.\n";
         showFinalScore();
+		saveHighScore();
         exit(0);
     }
 }

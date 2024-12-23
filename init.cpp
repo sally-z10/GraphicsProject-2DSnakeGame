@@ -24,3 +24,7 @@ void initializeGame() {
     foodAvailable = 0;
     paused = 1;
 }
+
+void reshape(GLsizei, GLsizei) {
+    glutReshapeWindow(map_size * 20, map_size * 20);
+}

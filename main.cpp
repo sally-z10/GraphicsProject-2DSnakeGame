@@ -8,7 +8,7 @@
 #include "def.h"
 
 int main(int argc, char** argv) {
-    //loadHighScore();
+    loadHighScore();
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE);
 
@@ -17,15 +17,20 @@ int main(int argc, char** argv) {
     glutInitWindowPosition(100, 100);
     menuWindow = glutCreateWindow("Menu");
     initMenuWindow();
-
+    
     // Create game window
     glutInitWindowSize(map_size * 20, map_size * 20);
     glutInitWindowPosition(200, 200);
     gameWindow = glutCreateWindow("Snake Game");
     initGameWindow();
     glutHideWindow();
-
+	guide();
+    glutDisplayFunc(displayGame);
+    glutKeyboardFunc(keyboard);
+    glutReshapeFunc(reshape);
+    glutTimerFunc(gameSpeed, TimerFunc, 0);
     initializeGame();
     glutMainLoop();
+    
     return 0;
 }

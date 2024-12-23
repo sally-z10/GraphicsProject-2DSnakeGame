@@ -1,27 +1,5 @@
 #include "def.h"
 
-void showFinalScore()
-{
-    std::cout << "*********\n";
-    std::cout << "Your Final Score is: " << score << std::endl;
-}
-
-void guide()
-{
-    printf("\n*********************");
-    printf("\nUse WASD as movement keys.");
-    printf("\nPress W for Up, A for left, S for Down and D for Right");
-    printf("\nM to change difficulty.");
-    printf("\nR to Restart Game.");
-    printf("\n+ to Increase map size. The game will restart though.");
-    printf("\n- to Decrease map size. The game will restart though.");
-    printf("\nP to pause/resume the game.");
-    printf("\nPress Esc or Q to  Quit.");
-    printf("\nPress H for help.");
-    printf("\n\nPress P to Start.");
-    printf("\n*********************\n");
-}
-
 void moveSnake(int newDirection)
 {
     direction = newDirection;
@@ -44,6 +22,7 @@ void moveSnake(int newDirection)
         break;
     }
 
+
     for (auto part : snake_body)
     {
         if ((part.first == (snake_body[0].first + delX)) && (part.second == (snake_body[0].second + delY)))
@@ -55,8 +34,9 @@ void moveSnake(int newDirection)
             {
                 std::cout << "Game Over.\n";
                 showFinalScore();
+				saveHighScore();
                 statusMessage = "Game Over! Press R to Restart or Q to Quit.";
-                // Could switch to menu or end state if you want
+				exit(0);
             }
         }
     }
@@ -66,6 +46,7 @@ void moveSnake(int newDirection)
     {
         std::cout << "Oh NO! You ran into wall. Game Over.\n";
         showFinalScore();
+		saveHighScore();
         delay(2);
         exit(0);
     }
@@ -93,8 +74,7 @@ void moveSnake(int newDirection)
     glutPostRedisplay();
 }
 
-void TimerFunc(int val)
-{
+void TimerFunc(int val) {
     if (!paused)
         moveSnake(direction);
     glutTimerFunc(gameSpeed, TimerFunc, 0);
