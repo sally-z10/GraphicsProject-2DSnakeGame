@@ -65,6 +65,12 @@ void moveSnake(int newDirection)
         foodAvailable = 0;
     }
 
+	// compare the score with high score then update the high score
+	if (score > highScore)
+	{
+		highScore = score;
+	}
+
     snake_body.push_front({ snake_body[0].first + delX, snake_body[0].second + delY });
     if (!grow)
     {
