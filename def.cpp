@@ -17,3 +17,7 @@ int direction = RIGHT;
 int Difficulty = maxDifficulty;
 int currentLives = initialLives;
 int gameSpeed = Difficulty * 20;
+int highScore = 0;
+int gameWindow = 0; 
+int menuWindow = 0;
+string statusMessage = "Welcome !!";

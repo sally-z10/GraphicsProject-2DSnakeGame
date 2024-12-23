@@ -1,28 +1,26 @@
 #include "def.h"
 
-void initializeGame()
-{
-    assert(map_size >= 15);
-    assert(map_size <= 50);
-    assert(luck <= 100);
-    assert(luck >= 1);
-    assert(maxDifficulty >= 5);
+void initMenuWindow() {
+    glutDisplayFunc(displayMenu);
+    glutKeyboardFunc(menuKeyboard);
+    glClearColor(0.0, 0.0, 0.0, 1.0);
+}
 
-    srand((unsigned)time(0));
+void initGameWindow() {
+    glutDisplayFunc(displayGame);
+    glClearColor(mapBgColor, 1.0);
+	glutKeyboardFunc(keyboard);
+    glutTimerFunc(gameSpeed, TimerFunc, 0);
+}
 
-    glClearColor(mapBgColor, 0);
-    score = 0;
-    currentLives = initialLives;
-
-    // create size 3 snake
+void initializeGame() {
+    srand(time(0));
     snake_body.clear();
-    snake_body.push_back({ 5, map_size / 2 });
-    snake_body.push_back({ 4, map_size / 2 });
-    snake_body.push_back({ 3, map_size / 2 });
-
-    moveSnake(RIGHT);
-
-    paused = 1;
+    snake_body.push_back({ map_size / 2, map_size / 2 });
+    snake_body.push_back({ map_size / 2 - 1, map_size / 2 });
+    snake_body.push_back({ map_size / 2 - 2, map_size / 2 });
+    direction = RIGHT;
+    score = 0;
     foodAvailable = 0;
-    guide(); // show game guide
+    paused = 1;
 }

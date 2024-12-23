@@ -119,13 +119,12 @@ void drawSnake()
     }
 }
 
-void display()
-{
+
+void displayGame() {
     glClear(GL_COLOR_BUFFER_BIT);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     gluOrtho2D(0, map_size, 0, map_size);
-    glMatrixMode(GL_MODELVIEW);
 
     drawSnake();
     drawFood();
@@ -133,6 +132,7 @@ void display()
 
     glutSwapBuffers();
 }
+
 
 void reshape(GLsizei, GLsizei)
 {

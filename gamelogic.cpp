@@ -50,12 +50,13 @@ void moveSnake(int newDirection)
         {
             currentLives--;
             std::cout << "Be Careful! You got bit.\n";
+            statusMessage = "You lost a life! Press P to Continue.";
             if (currentLives <= 0)
             {
                 std::cout << "Game Over.\n";
                 showFinalScore();
-                delay(2);
-                exit(0);
+                statusMessage = "Game Over! Press R to Restart or Q to Quit.";
+                // Could switch to menu or end state if you want
             }
         }
     }
