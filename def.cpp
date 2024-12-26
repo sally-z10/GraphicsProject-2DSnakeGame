@@ -1,6 +1,6 @@
 #include "def.h"
 
-int map_size = 20;
+int map_size = 25;
 int luck = 5;
 int initialLives = 5;
 int maxDifficulty = 7;

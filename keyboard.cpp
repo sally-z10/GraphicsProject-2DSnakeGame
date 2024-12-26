@@ -33,14 +33,14 @@ void keyboard(unsigned char key, int, int) {
         if (Difficulty <= 0)
             Difficulty = maxDifficulty;
         gameSpeed = Difficulty * 20;
-        std::cout << "New Difficulty is " << (maxDifficulty + 1) - Difficulty << std::endl;
+        statusMessage = "New Difficulty is " + to_string((maxDifficulty + 1) - Difficulty);
         break;
     case 'P':
     case 'p':
         if (paused == 0)
-            std::cout << "You Stopped\nPaused the game\n";
+            statusMessage = "You Stopped\nPaused the game\n";
         else
-            std::cout << "You Resumed/Started Game\n";
+            statusMessage = "Good Luck!";
         paused = !paused;
         break;
     case 'H':
@@ -51,7 +51,7 @@ void keyboard(unsigned char key, int, int) {
     case 'r':
         showFinalScore();
 		saveHighScore();
-        std::cout << "You restarted the Game.\nRestarting...\n.All the best!!!.\n";
+        statusMessage = "You restarted the Game.\nRestarting...\n.All the best!!!.\n";
         initializeGame();
         break;
     case '=':
@@ -74,7 +74,7 @@ void keyboard(unsigned char key, int, int) {
         break;
     case 27:
     case 'q':
-        std::cout << "You pressed exit.\n";
+        statusMessage = "You pressed exit.\n";
         showFinalScore();
 		saveHighScore();
         exit(0);

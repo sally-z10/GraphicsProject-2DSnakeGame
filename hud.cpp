@@ -1,6 +1,6 @@
 #include "def.h"
 
-void drawText(float x, float y, const std::string& text, void* font = GLUT_BITMAP_HELVETICA_12, float r = 1.0f, float g = 1.0f, float b = 1.0f)
+void drawText(float x, float y, const std::string& text, void* font = GLUT_BITMAP_HELVETICA_18, float r = 1.0f, float g = 1.0f, float b = 1.0f)
 {
     glColor3f(r, g, b);
     glRasterPos2f(x, y);
@@ -9,9 +9,8 @@ void drawText(float x, float y, const std::string& text, void* font = GLUT_BITMA
     }
 }
 
-void drawHUD()
-{
-    // 1) Draw a background rectangle at the top
+void drawHUD() {
+    // Background rectangle at the top
     glColor3f(mapBgColor);
     glBegin(GL_QUADS);
     glVertex2f(0, map_size);
@@ -20,30 +19,37 @@ void drawHUD()
     glVertex2f(0, map_size + HUD_HEIGHT);
     glEnd();
 
-    // We'll place text starting near the top of that rectangle
+    // We'll place text starting near the top of that rectangle.
     float topY = map_size + HUD_HEIGHT - 1.0f;
-    float leftX = 1.0f;               // left margin
-    float rightX = map_size - 10.0f;   // so it’s on the same line as 'lives'
-    float lineGap = 1.0f;               // vertical spacing between lines
+    float lineGap = 1.3f;
+    float hudLeftX = 1.0f;           // far left
+    float hudCenterX = map_size * 0.20f; // approximate center
+    float hudRightX = map_size - 12.0f; // far right margin
 
-    // 2) First line: "Lives: X" on left, "Score: Y" on right
+    // -------- Line 1: Lives, Score, HighScore -------------
     {
+        // Lives on the left
         std::string livesStr = "Lives:" + std::to_string(currentLives);
-        drawText(leftX, topY, livesStr);
+        drawText(hudLeftX, topY, livesStr);
 
+        // Score in the center
         std::string scoreStr = "Score:" + std::to_string(score);
-        drawText(rightX, topY, scoreStr);
+        drawText(hudCenterX, topY, scoreStr);
+
+        // HighScore on the right
+        std::string highScoreStr = "HighScore:" + std::to_string(highScore);
+        drawText(hudRightX, topY, highScoreStr);
     }
 
-    // 3) Then instructions on separate lines, left-aligned
-    float lineY = topY - lineGap;  // move down one line
+    // -------- Line 2: M/R/P instructions -------------
+    float lineY = topY - lineGap;
+    drawText(hudLeftX, lineY, "M: Change Difficulty   R: Restart   P:Pause/Resume");
 
-    drawText(leftX, lineY, "M: Change Difficulty   R: Restart   P:Pause/Resume");
+    // -------- Line 3: Zoom/Quit instructions -------------
     lineY -= lineGap;
+    drawText(hudLeftX, lineY, "+: Zoom In  -: Zoom Out  Q: Quit");
 
-    drawText(leftX, lineY, "+: Zoom In  -: Zoom Out");
+    // -------- Line 4: statusMessage (below the instructions) -------------
     lineY -= lineGap;
-
-    drawText(leftX, lineY, statusMessage);
-    lineY -= lineGap;
+    drawText(hudLeftX, lineY, statusMessage);
 }
