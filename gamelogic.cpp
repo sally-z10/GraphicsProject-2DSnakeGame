@@ -30,8 +30,7 @@ void moveSnake(int newDirection)
             currentLives--;
             std::cout << "Be Careful! You got bit.\n";
             statusMessage = "You lost a life! Be Careful! You got bit.";
-			delay(1);
-			statusMessage = " ";
+		
             if (currentLives <= 0)
             {
 				delay(2);
@@ -39,7 +38,10 @@ void moveSnake(int newDirection)
                 statusMessage = "Game Over!";
                 showFinalScore();
 				saveHighScore();
-				initializeGame();
+                statusMessage = "Game Over! Press R to Restart or Q to Quit.";
+
+                paused = 1;           // Mark the game as finished
+                return;                 // Return so we don’t do more snake logic
 				
 			}
 		}
@@ -52,7 +54,6 @@ void moveSnake(int newDirection)
 		statusMessage = "Oh NO! You ran into wall. Game Over.";
         showFinalScore();
 		saveHighScore();
-        delay(2);
 		initializeGame();
     }
 
@@ -66,8 +67,6 @@ void moveSnake(int newDirection)
             special = 0;
             std::cout << "Legendary Food!!! +100 score.\n";
 			statusMessage = "Legendary Food!!! +10 score.";
-			delay(1);
-            statusMessage = " ";
         }
         score += grow;
         foodAvailable = 0;

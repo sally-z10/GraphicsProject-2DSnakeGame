@@ -16,26 +16,12 @@
 using namespace std;
 
 
-// colors for the program in rgb format
+// ================== Constants =================== //
 #define mapBgColor   0.10, 0.10, 0.20
 #define snakeColor   1.00, 1.00, 1.00
-#define foodColor    0.00, 0.00, 0.00
+#define foodColor    0.7, 0.7, 0.7
 #define wallColor    0.0,  1.0,  1.0
 #define splFoodColor 1.00, 0.00, 0.00
-
-extern int map_size;
-extern int luck;
-extern int initialLives;
-extern int maxDifficulty;
-extern int highScore;
-extern int gameWindow;
-extern int menuWindow;
-extern int direction;
-extern int paused;
-extern int gameSpeed;
-extern string statusMessage;
-static const int HUD_HEIGHT = 5;
-
 
 #define UP     1
 #define DOWN   2
@@ -44,42 +30,69 @@ static const int HUD_HEIGHT = 5;
 
 #define delay(n) for(int i = 0; i < 100000;i++)for(int j = 0; j < n*1000;j++);
 
-extern std::deque<std::pair<int, int>> snake_body;
-extern int food_pos[2];
+// ============== Global Variables ================ //
 
-extern int foodAvailable;
-extern int score;
-extern int special;
-extern int paused;
-extern int finished;
+// Map & Window
+extern int map_size;
+extern int gameWindow;
+extern int menuWindow;
+static const int HUD_HEIGHT = 5;
+
+// Game Variables
 extern int direction;
+extern int paused;
+extern int gameSpeed;
+extern int luck;
+extern int initialLives;
+extern int maxDifficulty;
+extern int finished;
 extern int Difficulty;
 extern int currentLives;
-extern int gameSpeed;
+extern string statusMessage;
+
+// Snake & Food
+extern std::deque<std::pair<int, int>> snake_body;
+extern int food_pos[2];
+extern int foodAvailable;
+extern int special;
+extern int score;
+extern int highScore;
 
 
-// Function prototypes
-void showFinalScore();
-void guide();
+// ============== Function Prototypes ============== //
+
+// draw.cpp
 void draw_body_part(int x, int y);
 void food_texture(int x, int y);
 void drawBrick(int x, int y);
 void drawWalls();
 void drawFood();
 void drawSnake();
-void moveSnake(int newDirection);
 void displayGame();
-void reshape(GLsizei w, GLsizei h);
-void initializeGame();
-void keyboard(unsigned char key, int x, int y);
-void displayMenu();
-void menuKeyboard(unsigned char key, int, int);
-void initMenuWindow();
-void initGameWindow();
-void saveHighScore();
+
+// gamelogic.cpp
+void moveSnake(int newDirection);
 void TimerFunc(int value);
-int loadHighScore();
+
+// hud.cpp
 void drawText(float x, float y, const std::string & text, void* font, float r, float g, float b);
 void drawHUD();
+
+// init.cpp
+void initMenuWindow();
+void initGameWindow();
+void initializeGame();
+void reshape(GLsizei w, GLsizei h);
+
+// keyboard.cpp
+void keyboard(unsigned char key, int x, int y);
+
+// menu.cpp
+int loadHighScore();
+void saveHighScore();
+void showFinalScore();
+void guide();
+void displayMenu();
+void menuKeyboard(unsigned char key, int, int);
 
 #endif // DEF_H

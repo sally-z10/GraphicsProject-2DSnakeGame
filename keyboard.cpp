@@ -41,6 +41,7 @@ void keyboard(unsigned char key, int, int) {
             statusMessage = "You Stopped\nPaused the game\n";
         else
             statusMessage = "Good Luck!";
+     
         paused = !paused;
         break;
     case 'H':
