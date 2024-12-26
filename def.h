@@ -34,6 +34,7 @@ extern int direction;
 extern int paused;
 extern int gameSpeed;
 extern string statusMessage;
+static const int HUD_HEIGHT = 5;
 
 
 #define UP     1
@@ -71,13 +72,14 @@ void displayGame();
 void reshape(GLsizei w, GLsizei h);
 void initializeGame();
 void keyboard(unsigned char key, int x, int y);
-void mouse(int button, int state, int mx, int my); // New mouse callback
 void displayMenu();
 void menuKeyboard(unsigned char key, int, int);
 void initMenuWindow();
 void initGameWindow();
 void saveHighScore();
 void TimerFunc(int value);
-void loadHighScore();
+int loadHighScore();
+void drawText(float x, float y, const std::string & text, void* font, float r, float g, float b);
+void drawHUD();
 
 #endif // DEF_H

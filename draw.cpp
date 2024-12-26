@@ -124,12 +124,21 @@ void displayGame() {
     glClear(GL_COLOR_BUFFER_BIT);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    gluOrtho2D(0, map_size, 0, map_size);
+    // Extend the top to map_size + HUD_HEIGHT
+    gluOrtho2D(0, map_size, 0, map_size + HUD_HEIGHT);
 
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+
+    // 1. Draw the playable area
     drawSnake();
     drawFood();
     drawWalls();
 
+    // 2. Draw the HUD on top
+    drawHUD();
+
     glutSwapBuffers();
 }
+
 

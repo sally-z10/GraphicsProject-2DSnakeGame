@@ -2,7 +2,7 @@
 
 const char* highScoreFile = "high_score.txt";
 
-void loadHighScore() {
+int loadHighScore() {
     ifstream file(highScoreFile);
     if (file.is_open()) {
         file >> highScore;
@@ -11,6 +11,7 @@ void loadHighScore() {
     else {
         highScore = 0;
     }
+	return highScore;
 }
 
 void saveHighScore() {

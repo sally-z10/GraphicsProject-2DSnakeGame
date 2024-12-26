@@ -29,17 +29,17 @@ void moveSnake(int newDirection)
         {
             currentLives--;
             std::cout << "Be Careful! You got bit.\n";
-            statusMessage = "You lost a life! Press P to Continue.";
+            statusMessage = "You lost a life! Be Careful! You got bit.";
             if (currentLives <= 0)
             {
                 std::cout << "Game Over.\n";
                 showFinalScore();
 				saveHighScore();
                 statusMessage = "Game Over! Press R to Restart or Q to Quit.";
-				exit(0);
-            }
-        }
-    }
+				
+			}
+		}
+	}
 
     if (snake_body[0].first <= 0 || snake_body[0].first >= map_size - 1 ||
         snake_body[0].second <= 0 || snake_body[0].second >= map_size - 1)
@@ -60,12 +60,14 @@ void moveSnake(int newDirection)
             grow = 100;
             special = 0;
             std::cout << "Legendary Food!!! +100 score.\n";
+			statusMessage = "Legendary Food!!! +100 score.";
         }
         score += grow;
         foodAvailable = 0;
     }
 
 	// compare the score with high score then update the high score
+    highScore = loadHighScore();
 	if (score > highScore)
 	{
 		highScore = score;

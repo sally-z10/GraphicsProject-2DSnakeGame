@@ -26,7 +26,7 @@
     <ClCompile Include="keyboard.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="menu.cpp" />
-    <ClCompile Include="mouse.cpp" />
+    <ClCompile Include="hud.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="def.h" />
