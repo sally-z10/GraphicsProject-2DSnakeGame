@@ -1,4 +1,97 @@
-# Snake 2D Game
+# Snake 2D Game - README  
+
+## Overview  
+This repository contains the source code for a 2D Snake Game implemented using OpenGL and GLUT. The game features smooth animations, a menu system, and a high score tracker. Players control the snake, avoid collisions, and aim to eat food to grow and score points.  
+
+---
+
+## Requirements  
+
+To run this project, ensure you have the following:  
+
+### 1. **Development Environment**  
+- **Microsoft Visual Studio** (Recommended version: 2019 or later).  
+- Ensure that the **Desktop development with C++** workload is installed in Visual Studio.
+
+### 2. **Required Libraries**  
+- **OpenGL**: Built-in support in Visual Studio.  
+- **GLUT**: Install the FreeGLUT library for handling OpenGL rendering and input.  
+
+---
+
+## Setting Up FreeGLUT in Visual Studio  
+
+1. **Download FreeGLUT**:  
+   Download the FreeGLUT library from the [official FreeGLUT website](http://freeglut.sourceforge.net/) or a trusted source.  
+
+2. **Install FreeGLUT**:  
+   - Extract the downloaded ZIP file.  
+   - Place the `freeglut.dll` file in the project’s executable folder (e.g., `Debug` or `Release`).  
+   - Add the `freeglut.lib` and `freeglut.h` files to your project:  
+     - Copy `freeglut.h` to the Visual Studio include directory (`C:\Program Files (x86)\Microsoft Visual Studio\<Version>\VC\Tools\MSVC\<Version>\include\GL\`).  
+     - Copy `freeglut.lib` to the library directory (`C:\Program Files (x86)\Microsoft Visual Studio\<Version>\VC\Tools\MSVC\<Version>\lib\`).  
+
+3. **Configure Your Project**:  
+   - Open the project in Visual Studio.  
+   - Go to **Project > Properties > Linker > Input** and add `freeglut.lib` to the **Additional Dependencies**.  
+
+---
+
+## Running the Game  
+
+1. **Download the Repository**:  
+   - Clone the repository or download it as a ZIP file.  
+   - Extract the contents of the ZIP file to a folder on your computer.  
+
+2. **Locate the Solution File (`.sln`)**:  
+   - Open the extracted folder.  
+   - Find the file with the `.sln` extension (e.g., `SnakeGame.sln`).  
+
+3. **Run the Game**:  
+   - Double-click the `.sln` file to open it in Microsoft Visual Studio.  
+   - Once the project loads, press **Ctrl+F5** (or **Run without Debugging**) to start the game.  
+
+---
+
+## How the Game Works  
+
+- **Controls**:  
+  - Use `W`, `A`, `S`, `D` keys to control the snake's movement.  
+  - Press `P` to pause/resume the game.  
+  - Press `R` to restart the game.  
+  - Press `M` to change the game difficulty.  
+  - Use `+` or `-` to increase or decrease the map size.  
+
+- **Objective**:  
+  - Control the snake to eat food and grow in size.  
+  - Avoid collisions with the walls or the snake's own body.  
+  - Score as many points as possible.  
+
+- **Game Features**:  
+  - Persistent high score saved to a file (`high_score.txt`).  
+  - A graphical user interface with a menu and heads-up display (HUD).  
+  - Dynamic difficulty adjustment based on player input.  
+
+---
+
+## Troubleshooting  
+
+- Ensure that the required libraries (e.g., FreeGLUT) are correctly installed and configured.  
+- If the game does not run, ensure you are running the `.sln` file in Microsoft Visual Studio with the correct configuration (`Debug` or `Release`).  
+- Make sure the `freeglut.dll` file is in the same directory as the game executable.  
+
+---
+
+## Credits  
+
+- **Developers**:  
+  - Nada Ashraf Gomaa  
+  - Reda Zeineldeen  
+- **Course**: Computer Graphics (December 2024)  
+
+Enjoy the game!
+
+# code file content
 ## Main.cpp: Core Setup and Execution
 ### Purpose:
 
