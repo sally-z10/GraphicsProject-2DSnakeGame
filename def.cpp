@@ -2,7 +2,7 @@
 
 int map_size = 25;
 int luck = 5;
-int initialLives = 5;
+int initialLives = 3;
 int maxDifficulty = 7;
 
 std::deque<std::pair<int, int>> snake_body;
