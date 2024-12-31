@@ -52,7 +52,7 @@ void keyboard(unsigned char key, int, int) {
     case 'r':
         showFinalScore();
 		saveHighScore();
-        statusMessage = "You restarted the Game.\nRestarting...\n.All the best!!!.\n";
+        statusMessage = "Restarted..\n.All the best!! Press P to start\n";
         initializeGame();
         break;
     case '=':
