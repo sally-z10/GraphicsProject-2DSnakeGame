@@ -86,7 +86,7 @@ To run this project, ensure you have the following:
 
 - **Developers**:  
   - Nada Ashraf Gomaa  
-  - Reda Zeineldeen  
+  - Sally Reda Zeineldeen  
 - **Course**: Computer Graphics (December 2024)  
 
 Enjoy the game!
