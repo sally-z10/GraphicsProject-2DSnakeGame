@@ -19,21 +19,165 @@ To run this project, ensure you have the following:
 
 ---
 
-## Setting Up FreeGLUT in Visual Studio  
+## Setting Up FreeGLUT in Visual Studio / Installation
 
-1. **Download FreeGLUT**:  
-   Download the FreeGLUT library from the [official FreeGLUT website](http://freeglut.sourceforge.net/) or a trusted source.  
+### 1. Install Helper Libraries
 
-2. **Install FreeGLUT**:  
-   - Extract the downloaded ZIP file.  
-   - Place the `freeglut.dll` file in the project’s executable folder (e.g., `Debug` or `Release`).  
-   - Add the `freeglut.lib` and `freeglut.h` files to your project:  
-     - Copy `freeglut.h` to the Visual Studio include directory (`C:\Program Files (x86)\Microsoft Visual Studio\<Version>\VC\Tools\MSVC\<Version>\include\GL\`).  
-     - Copy `freeglut.lib` to the library directory (`C:\Program Files (x86)\Microsoft Visual Studio\<Version>\VC\Tools\MSVC\<Version>\lib\`).  
+To set up the necessary OpenGL libraries, follow these steps:
 
-3. **Configure Your Project**:  
-   - Open the project in Visual Studio.  
-   - Go to **Project > Properties > Linker > Input** and add `freeglut.lib` to the **Additional Dependencies**.  
+1. **Create OpenGLwrappers Folder**
+   - Create a folder named `OpenGLwrappers` in the `C:` drive:
+     ```
+     C:\OpenGLwrappers
+     ```
+   - This specific name and location ensure that all programs in `ExperimenterSource` run out of the box.
+
+2. **Download and Install FreeGLUT**
+   - Download FreeGLUT from [FreeGLUT-MSVC-2.8.1-1.mp.zip](http://files.transmissionzero.co.uk/software/development/GLUT/older/freeglut-MSVC-2.8.1-1.mp.zip).
+   - Unzip the file and save the folder `freeglut-MSVC-2.8.1-1.mp` in `C:\OpenGLwrappers`.
+
+3. **Download and Install GLEW**
+   - Download GLEW from [glew-1.10.0-win32.zip](https://sourceforge.net/projects/glew/files/glew/1.10.0/glew-1.10.0-win32.zip/download).
+   - Unzip the file and save the folder `glew-1.10.0-win32` in `C:\OpenGLwrappers`.
+
+4. **Download and Install GLM**
+   - Download GLM from [glm-0.9.7.5.zip](https://github.com/g-truc/glm/releases/download/0.9.7.5/glm-0.9.7.5.zip).
+   - Unzip the file and save the folder `glm-0.9.7.5` in `C:\OpenGLwrappers`.
+
+5. **Copy DLL Files**
+   - **FreeGLUT DLL**:
+     - Copy `freeglut.dll` from:
+       ```
+       C:\OpenGLwrappers\freeglut-MSVC-2.8.1-1.mp\freeglut\bin
+       ```
+     - Paste it into:
+       ```
+       C:\Windows\SysWOW64
+       ```
+   - **GLEW DLL**:
+     - Copy `glew32.dll` from:
+       ```
+       C:\OpenGLwrappers\glew-1.10.0-win32\glew-1.10.0\bin\Release\Win32
+       ```
+     - Paste it into:
+       ```
+       C:\Windows\SysWOW64
+       ```
+   - **GLU32 DLL**:
+     - Ensure `glu32.dll` is present in `C:\Windows\SysWOW64`. If not, search online resources to reinstall it.
+
+### 2. Integrate with Visual Studio
+
+To streamline future OpenGL projects, create and use an OpenGL project template in Visual Studio 2019:
+
+#### Create an OpenGL Project Template
+
+1. **Create a New Project**
+   - Open Visual Studio 2019.
+   - Click **Create a new project**.
+   - Search for **C++ Console App** and select it. Click **Next**.
+   - Configure the project:
+     - **Project Name**: `OpenGLProjectTemplate`
+     - **Location**: Choose a convenient folder.
+     - Check **Place solution and project in the same directory**.
+     - Click **Create**.
+
+2. **Set Up Project Files**
+   - In **Solution Explorer**, locate `OpenGLProjectTemplate.cpp` under **Source Files**.
+   - Open `OpenGLProjectTemplate.cpp` and replace its contents with your desired OpenGL code. For example, you can use the contents from an existing `square.cpp` file or any starter OpenGL code.
+
+3. **Configure Project Properties**
+   - Go to:
+     ```
+     Project → OpenGLProjectTemplate Properties
+     ```
+   - **Include Directories**:
+     - Navigate to:
+       ```
+       Configuration Properties → C/C++ → General → Additional Include Directories → Edit
+       ```
+     - Add the following paths:
+       ```
+       C:\OpenGLwrappers\freeglut-MSVC-2.8.1-1.mp\freeglut\include
+       C:\OpenGLwrappers\glew-1.10.0-win32\glew-1.10.0\include
+       C:\OpenGLwrappers\glm-0.9.7.5\glm
+       ```
+   - **Library Directories**:
+     - Navigate to:
+       ```
+       Configuration Properties → Linker → General → Additional Library Directories → Edit
+       ```
+     - Add the following paths:
+       ```
+       C:\OpenGLwrappers\freeglut-MSVC-2.8.1-1.mp\freeglut\lib
+       C:\OpenGLwrappers\glew-1.10.0-win32\glew-1.10.0\lib\Release\Win32
+       ```
+   - **Additional Dependencies**:
+     - Navigate to:
+       ```
+       Configuration Properties → Linker → Input → Additional Dependencies → Edit
+       ```
+     - Add the following libraries, one per line:
+       ```
+       glew32.lib
+       opengl32.lib
+       ```
+   - Click **OK** to apply the settings.
+
+4. **Build and Test the Template**
+   - Build the solution by selecting:
+     ```
+     Build → Build Solution
+     ```
+     - Ensure the build succeeds.
+   - Start debugging:
+     ```
+     Debug → Start Debugging
+     ```
+     - Verify that the application runs without errors and displays the expected OpenGL output.
+
+5. **Finalize the Template**
+   - In **Solution Explorer**, right-click `OpenGLProjectTemplate.cpp` under **Source Files** and select:
+     ```
+     Remove → Delete
+     ```
+   - Save all changes:
+     ```
+     File → Save All
+     ```
+   - Export the project as a template:
+     ```
+     Project → Export Template
+     ```
+     - In the wizard:
+       - Select **Project template**.
+       - Click **Next**.
+       - **Template Name**: `OpenGLProjectTemplate`
+       - Check **Automatically import the template into Visual Studio**.
+       - Uncheck **Display an explorer window on the output files folder**.
+       - Click **Finish**.
+   - You can now delete the original `OpenGLProjectTemplate` project from its folder.
+
+#### Use the OpenGL Project Template
+
+1. **Create a New Project from Template**
+   - Open Visual Studio 2019.
+   - Click **Create a new project**.
+   - Search for and select the `OpenGLProjectTemplate`.
+   - Click **Next**.
+   - Name your project and choose a suitable location.
+   - Click **Create**.
+
+2. **Add New C++ File**
+   - In **Solution Explorer**, right-click **Source Files**.
+   - Select:
+     ```
+     Add → New Item
+     ```
+   - Choose **C++ File**, name it appropriately, and click **Add**.
+   - A new `.cpp` file will open, ready for you to write your C++/OpenGL code.
+
+With these steps, your development environment is fully configured for OpenGL projects in Visual Studio 2019. You can now start building and running your own OpenGL applications seamlessly.
 
 ---
 
